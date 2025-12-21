@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAjX3-9hx3lnyi_cTT1ngefR0GeVHuxRB8',
-    appId: '1:86499266488:android:25615edc10a3fee8fc094d',
-    messagingSenderId: '86499266488',
-    projectId: 'skolar-52a91',
-    storageBucket: 'skolar-52a91.firebasestorage.app',
+    apiKey: '***********-****************_****************',
+    appId: '*:****************:android:***************',
+    messagingSenderId: '************',
+    projectId: 'skolar-*********',
+    storageBucket: 'skolar-*********.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyApfBzBLMUCD0NFG1nmBiKLFAe5qXGe2QI',
-    appId: '1:86499266488:ios:b6b4372bebd35e19fc094d',
-    messagingSenderId: '86499266488',
-    projectId: 'skolar-52a91',
-    storageBucket: 'skolar-52a91.firebasestorage.app',
+    apiKey: '***************************************',
+    appId: '*:**************:ios:***********************',
+    messagingSenderId: '***********',
+    projectId: 'skolar-*******',
+    storageBucket: 'skolar-****.firebasestorage.app',
     iosBundleId: 'com.example.skolar',
   );
 }
