@@ -1,0 +1,22 @@
+-- CREATE VIEW view_students_users AS
+-- SELECT 
+--     students.*,
+--     users.*
+-- FROM students
+-- JOIN users ON students.user_id = users.id;
+
+-- CREATE VIEW view_exams AS
+-- SELECT 
+--     exams.id AS exam_id,
+--     exams.exam_date,
+--     exams.term,
+--     exams.exam_type,
+--     grades.name AS grade_name,
+--     subjects.id AS subject_id,
+--     subjects.name AS subject_name,
+--     subjects.description,
+--     subjects.teacher_id
+-- FROM exams
+-- JOIN grades ON exams.grade_id = grades.id
+-- JOIN subjects ON exams.subject_id = subjects.id;
+

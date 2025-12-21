@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "86499266488",
+    "project_id": "skolar-52a91",
+    "storage_bucket": "skolar-52a91.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86499266488:android:25615edc10a3fee8fc094d",
+        "android_client_info": {
+          "package_name": "com.example.skolar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjX3-9hx3lnyi_cTT1ngefR0GeVHuxRB8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
