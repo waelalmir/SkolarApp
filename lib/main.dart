@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     LocaleController controller = Get.put(LocaleController());
 
     return ScreenUtilInit(
-      designSize: const Size(360, 690), // حجم التصميم الأساسي (هاتف متوسط)
+      designSize: const Size(360, 690), 
       minTextAdapt: true,
       builder: (context, child) {
         return GetMaterialApp(
