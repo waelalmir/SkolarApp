@@ -36,7 +36,6 @@ class ViewGradesController extends GetxController {
     loadingDetails = true;
     update();
 
-    // فقط إذا ما تم تحميل الأقسام سابقاً
     if (!gradeSections.containsKey(grade.id)) {
       await getSections(grade.id!);
     }
@@ -78,7 +77,7 @@ class ViewGradesController extends GetxController {
         List<SectionsModel> list = dataresponse
             .map((e) => SectionsModel.fromJson(e))
             .toList();
-        gradeSections[gradeid] = list; // ← حفظ الأقسام حسب الـ gradeid
+        gradeSections[gradeid] = list; 
       }
     } else {
       gradeSections[gradeid] = [];
@@ -137,8 +136,8 @@ class ViewGradesController extends GetxController {
 
   @override
   void onInit() async {
-    await getGrades(); // أولاً: جلب كل الصفوف
-    await getAllSections(); // ثانياً: جلب الأقسام لكل صف
+    await getGrades();
+    await getAllSections();
     super.onInit();
   }
 }
