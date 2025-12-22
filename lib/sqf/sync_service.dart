@@ -61,7 +61,6 @@ class SyncService extends GetxService {
       print("📦 DATA: $body");
 
       try {
-        // استعمل دالة sendRequest في UsersData (هي ترجع Map<String,dynamic>)
         final Map<String, dynamic>? response = await usersData.sendRequest(
           url,
           body,
@@ -69,16 +68,12 @@ class SyncService extends GetxService {
 
         print("📥 RESPONSE: $response");
 
-        // 1) نجاح واضح من السيرفر
         if (response != null && response['status'] == 'success') {
           await sqlDb.deleteRequest(id);
           print("🟢 SYNC OK → Deleted local id $id");
           continue;
         }
 
-        // 2) لو السيرفر رجع خطأ بسبب وجود البيانات مسبقًا (duplicate),
-        //    نعتبره "مزامنة ناجحة" ونحذف المحلي لتجنب تكرار المحاولات.
-        //    هذا يعتمد على شكل استجابة السيرفر — عدّل الشرط حسب response الذي يرسلك السيرفر.
         if (response != null &&
             (response['message']?.toString().toLowerCase().contains(
                       'duplicate',
@@ -95,13 +90,10 @@ class SyncService extends GetxService {
           continue;
         }
 
-        // 3) حالة خطأ عام أو response == null
         print(
           "🔴 SYNC FAILED (server rejected or null) for id $id — keeping locally",
         );
-        // لا نحذف السجل، سيُعاد المحاولة في المزامنة القادمة.
       } catch (e, st) {
-        // خطأ شبكي أو غير متوقع — أترك السجل ليعاد المحاولة لاحقًا
         print("❌ SYNC ERROR for id $id → $e");
         print(st);
       }
