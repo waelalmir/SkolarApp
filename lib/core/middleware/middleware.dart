@@ -13,7 +13,6 @@ class MyMiddleWare extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     String? currentStep = myServices.sharedPrefrences.getString("step");
-    print("Middleware: Current Step is $currentStep"); // ⬅️ أضف هذا للتحقق
 
     if (currentStep == "2") {
       print("Middleware: Redirecting to Home Page");
