@@ -14,7 +14,6 @@ class ViewsessionController extends GetxController {
   int? sectionid;
   List<SessionModel> data = [];
 
-  // Group sessions by day
   Map<String, List<SessionModel>> groupedSessions = {};
   List<String> days = [];
   GradeModel? grademodel;
@@ -31,7 +30,7 @@ class ViewsessionController extends GetxController {
     groupedSessions = grouped;
     days = grouped.keys.toList();
 
-    update(); // مهم
+    update(); 
   }
 
   deleteSession(String id) async {
@@ -53,7 +52,7 @@ class ViewsessionController extends GetxController {
 
   refreshSession() {
     if (sectionid != null) {
-      getSession(sectionid!); // 🔹 استخدم المخزّن
+      getSession(sectionid!); 
     }
   }
 
@@ -72,7 +71,7 @@ class ViewsessionController extends GetxController {
       } else {
         statusRequest = StatusRequest.failure;
       }
-      groupSessionByDay(); // ← يجب بعد تعبئة data
+      groupSessionByDay(); 
     }
     update();
   }
