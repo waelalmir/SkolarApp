@@ -64,14 +64,12 @@ class EditsessionController extends GetxController {
   TimeOfDay startTime = const TimeOfDay(hour: 0, minute: 0);
   TimeOfDay endTime = const TimeOfDay(hour: 0, minute: 0);
 
-  /// تحديث وقت البداية
   void updateStartTime(TimeOfDay newTime) {
     startTime = newTime;
     endTime = TimeOfDay(hour: newTime.hour, minute: newTime.minute);
     update();
   }
 
-  /// تحديث وقت النهاية
   void updateEndTime(TimeOfDay newTime) {
     endTime = newTime;
     update();
@@ -193,7 +191,6 @@ class EditsessionController extends GetxController {
   void onInit() async {
     super.onInit();
 
-    // 1) هيّئ كل الـ Controllers
     gradeNameController = TextEditingController();
     gradeIdController = TextEditingController();
     dayNameController = TextEditingController();
@@ -207,10 +204,8 @@ class EditsessionController extends GetxController {
     dropdownSelectedName = TextEditingController();
     dropdownSelectedID = TextEditingController();
 
-    // 2) استلم arguments
     sessionModel = Get.arguments['sessionModel'];
 
-    // 3) ضع القيم مباشرة قبل تحميل المواد والأقسام
     gradeIdController.text = sessionModel!.gradeId.toString();
     sectionIdController.text = sessionModel!.sectionId.toString();
     subjectIdController.text = sessionModel!.subjectId.toString();
@@ -226,13 +221,10 @@ class EditsessionController extends GetxController {
       minute: int.parse(sessionModel!.endTime!.split(":")[1]),
     );
 
-    // 4) حمّل الصفوف (ليتم إيجاد اسم الصف)
     await getGrades();
 
-    // 5) حمّل المواد لهذا الصف
     await getSubjects();
 
-    // 6) حمّل الأساتذة (اختياري)
     await getTeachers();
     var teacher = teachersList.firstWhere(
       (e) => e.teacherId == sessionModel!.teacherId,
@@ -240,7 +232,6 @@ class EditsessionController extends GetxController {
     );
     teacherNameController.text = teacher.firstName!;
 
-    // 7) الآن أدخل للمواد وابحث عن المادة الصحيحة
     var sub = subjectList.firstWhere(
       (e) => e.id == sessionModel!.subjectId,
       orElse: () => SubjectsModel(id: 0, name: "Unknown"),
@@ -253,7 +244,6 @@ class EditsessionController extends GetxController {
     subjectNameController.text = sub.name!;
     gradeNameController.text = grade.name!;
 
-    // 8) حمّل الشُعب
     await getSections();
     var section = sectionsList.firstWhere(
       (e) => e.id == sessionModel!.sectionId,
