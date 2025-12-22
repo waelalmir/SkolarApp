@@ -77,12 +77,8 @@ class AddsessionController extends GetxController {
   TimeOfDay startTime = const TimeOfDay(hour: 0, minute: 0);
   TimeOfDay endTime = const TimeOfDay(hour: 0, minute: 0);
 
-  // true = endTime تلقائي مزامن مع startTime
-  // false = المستخدم غيّر endTime يدوياً => لا نغيّرها بعدين
   bool _endSynced = true;
 
-  /// استدعاء عند فتح شاشة تعديل/إنشاء
-  /// isNew = true عند إنشاء جديد (نريد مزامنة افتراضية)
   void initTimes({
     required TimeOfDay start,
     required TimeOfDay end,
@@ -92,22 +88,16 @@ class AddsessionController extends GetxController {
     endTime = end;
 
     if (isNew) {
-      // إنشاء جديد: نريد أن تكون النهاية متزامنة بالبداية في البداية
       _endSynced = true;
-      // ممكن نرغب أن نضع endTime = startTime إذا أردنا نفس الافتراضي:
-      // endTime = TimeOfDay(hour: start.hour, minute: start.minute);
     } else {
-      // تعديل موجود: إذا كانا متساويين اعتبرهما مزامنين، وإلا افترض أن المستخدم عدّل النهاية من قبل
       _endSynced = (start.hour == end.hour && start.minute == end.minute);
     }
     update();
   }
 
-  /// تحديث وقت البداية
   void updateStartTime(TimeOfDay newTime) {
     startTime = newTime;
 
-    // فقط غيّر endTime إذا ما زالت متزامنة
     if (_endSynced) {
       endTime = TimeOfDay(hour: newTime.hour, minute: newTime.minute);
     }
@@ -115,16 +105,13 @@ class AddsessionController extends GetxController {
     update();
   }
 
-  /// تحديث وقت النهاية (بواسطة المستخدم)
   void updateEndTime(TimeOfDay newTime) {
     endTime = newTime;
 
-    // بمجرد أن يغيّر المستخدم النهاية نحن نوقف المزامنة التلقائية
     _endSynced = false;
     update();
   }
 
-  /// (اختياري) إعادة تفعيل المزامنة — مفيد إذا أردت زر "مزامنة النهاية مع البداية"
   void syncEndToStart() {
     endTime = TimeOfDay(hour: startTime.hour, minute: startTime.minute);
     _endSynced = true;
@@ -238,9 +225,7 @@ class AddsessionController extends GetxController {
     var response = await gradesData.viewSectionsData(
       int.parse(gradeIdController.text),
     );
-    print(
-      "=============================== Sections response $response",
-    ); // ✅ أضف print للتأكد
+  كد
 
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
@@ -249,13 +234,12 @@ class AddsessionController extends GetxController {
         List dataresponse = response['data'];
         sectionsList.addAll(dataresponse.map((e) => SectionsModel.fromJson(e)));
 
-        // تنظيف الـ section المختار سابقاً
         sectionNameController.clear();
         sectionIdController.clear();
 
         print(
           "Sections fetched: ${sectionsList.length}",
-        ); // ✅ تأكد من عدد الأقسام
+        ); 
       }
     } else {
       statusRequest = StatusRequest.failure;
@@ -268,7 +252,7 @@ class AddsessionController extends GetxController {
   void Function(TimeOfDay)? onTimeSelected;
 
   Future<void> selectTime(BuildContext context) async {
-    final TimeOfDay initial = selectedTime ?? TimeOfDay.now(); // حل مشكلة null
+    final TimeOfDay initial = selectedTime ?? TimeOfDay.now(); //  null
 
     final TimeOfDay? picked = await showTimePicker(
       context: context,
