@@ -93,13 +93,13 @@ class ViewattendanceController extends GetxController {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: AppColor.primaryColor, // لون عنوان الشهر / اليوم المختار
-              onPrimary: AppColor.textcolor, // لون النص فوق اللون الأساسي
-              onSurface: Colors.black, // لون النص الأساسي
+              primary: AppColor.primaryColor, 
+              onPrimary: AppColor.textcolor,
+              onSurface: Colors.black, 
             ),
             // dialogTheme: DialogThemeData(
             //   backgroundColor: const Color.fromARGB(255, 78, 78, 78),
-            // ), // خلفية النافذة
+            // ),
           ),
           child: child!,
         );
@@ -107,7 +107,6 @@ class ViewattendanceController extends GetxController {
     );
 
     if (pickedDate != null) {
-      // تنسيق التاريخ ليظهر yy-MM-dd
       String formatted = DateFormat('yyyy-MM-dd').format(pickedDate);
       dateController.text = formatted;
       update();
