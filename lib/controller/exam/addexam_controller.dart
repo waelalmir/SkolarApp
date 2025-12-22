@@ -85,7 +85,6 @@ class AddexamController extends GetxController {
     }
   }
 
-  // دالة لفتح الـ DatePicker وتحديث القيمة
   Future<void> pickDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -96,14 +95,14 @@ class AddexamController extends GetxController {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: AppColor.primaryColor, // 🔵 اليوم المختار + الهيدر
-              onPrimary: Colors.white, // النص داخل اليوم المختار
-              surface: Colors.white, // خلفية الكاليندر
-              onSurface: AppColor.seconderyColor, // نص الأيام
+              primary: AppColor.primaryColor, 
+              onPrimary: Colors.white,
+              surface: Colors.white, 
+              onSurface: AppColor.seconderyColor, 
             ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-                foregroundColor: AppColor.primaryColor, // أزرار OK / CANCEL
+                foregroundColor: AppColor.primaryColor, 
               ),
             ),
           ),
@@ -118,10 +117,8 @@ class AddexamController extends GetxController {
     }
   }
 
-  // دالة منطقية للتحقق إذا التاريخ المختار قديم
   bool isExpired() {
-    if (selectedDate == null) return false;
-    return DateTime.now().isAfter(selectedDate!);
+   //checkdate logic
   }
 
   getSubjects() async {
