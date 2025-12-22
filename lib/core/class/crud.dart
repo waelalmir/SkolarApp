@@ -5,16 +5,14 @@ import 'package:http/http.dart' as http;
 import 'package:skolar/core/class/statusrequest.dart';
 import '../functions/checkinternet.dart';
 
-// 🔒 معلومات المصادقة الأساسية
-const String _apiUsername = "wael";
-const String _apiPassword = "wael12345";
+const String _apiUsername = "************";
+const String _apiPassword = "********";
 
 class Crud {
   // إنشاء الـ Basic Auth Header
   static String _basicAuth = 'Basic ' + base64Encode(utf8.encode('$_apiUsername:$_apiPassword'));
 
   // =========================================================
-  // 1️⃣ دالة POST العادية (بدون ملفات)
   // =========================================================
   Future<Either<StatusRequest, Map>> postData(String linkurl, Map data) async {
     try {
@@ -49,34 +47,27 @@ class Crud {
   }
 
   // =========================================================
-  // 2️⃣ دالة POST مع رفع ملفات (Multipart)
   // =========================================================
   Future<Either<StatusRequest, Map>> postDataWithFile(
       String linkurl, Map data, File file, String fileField) async {
     try {
       if (await checkInternet()) {
-        // إنشاء طلب Multipart
         var request = http.MultipartRequest("POST", Uri.parse(linkurl));
 
-        // 🧩 إضافة الـ Authorization Header
         request.headers['authorization'] = _basicAuth;
 
-        // إضافة الملف
         var multipartFile = await http.MultipartFile.fromPath(
           fileField,
           file.path,
         );
         request.files.add(multipartFile);
 
-        // إضافة البيانات النصية
         data.forEach((key, value) {
           request.fields[key] = value.toString();
         });
 
-        // إرسال الطلب
         var streamedResponse = await request.send();
 
-        // قراءة الاستجابة
         var response = await http.Response.fromStream(streamedResponse);
 
         print("📡 URL: $linkurl");
