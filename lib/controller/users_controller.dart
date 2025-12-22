@@ -16,41 +16,7 @@ class ViewUsersController extends GetxController {
 
   SqlDb sqlDb = SqlDb();
 
-  // getUsers() async {
-  //   statusRequest = StatusRequest.loading;
-  //   update();
-  //   var response = await usersData.viewData();
-  //   print("=============================== Controller $response ");
-  //   statusRequest = handlingData(response);
-  //   if (StatusRequest.success == statusRequest) {
-  //     if (response != null && response['data'] != null) {
-  //       usersList.clear();
-  //       List dataresponse = response['data'];
-  //       usersList.addAll(dataresponse.map((e) => UsersModel.fromJson(e)));
-  //     }
-  //   } else {
-  //     statusRequest = StatusRequest.failure;
-  //     Get.snackbar("Oops", "no users");
-  //   }
-  //   update();
-  // }
-
-  // Future<void> loadUsers() async {
-  //   usersList = await sqlDb.fetchAndCache<UsersModel>(
-  //     cacheKey: "users",
-  //     apiCall: () async {
-  //       final res = await usersData.viewData();
-  //       print("🔵 API Response = $res");
-  //       // ضمان وجود data
-  //       if (res["data"] is List) {
-  //         return res;
-  //       }
-  //       return {"data": []};
-  //     },
-  //     fromJson: (json) => UsersModel.fromJson(json),
-  //   );
-  //   update();
-  // }
+  
 
   getUsers() async {
     statusRequest = StatusRequest.loading;
