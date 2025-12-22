@@ -56,14 +56,12 @@ class AddusersController extends GetxController {
         var response = await usersData.addData(data);
         print("=== Online Response: $response");
 
-        // لو السيرفر ما رد → خزّن الطلب وارجع
         if (response == null) {
           print("=== Server Offline → Saving Local");
 
           int id = await sqlDb.insertRequest(AppLink.addUser, data);
           print("🟡 Offline Request Saved with ID: $id → $data");
 
-          // ⬅️ نفس السطر هنا أيضًا
           var allRequests = await sqlDb.getAllRequests();
           print("📌 Local Pending Requests After Insert: $allRequests");
           return;
@@ -85,7 +83,6 @@ class AddusersController extends GetxController {
         update();
         return;
       } else {
-        /// Offline صريح
         print("🟡 Saving Offline Request: $data");
         await sqlDb.insertRequest(AppLink.addUser, data);
         var allRequests = await sqlDb.getAllRequests();
