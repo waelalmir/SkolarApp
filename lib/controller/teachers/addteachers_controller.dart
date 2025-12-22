@@ -46,7 +46,7 @@ class AddTeachersController extends GetxController {
   TextEditingController dropdownSelectedName = TextEditingController();
   TextEditingController dropdownSelectedID = TextEditingController();
 
-  int? selectedUserId; // لتخزين الـ ID عند اختيار المستخدم
+  int? selectedUserId;
 
   addTeacher() async {
     if (formstate.currentState!.validate()) {
@@ -63,9 +63,7 @@ class AddTeachersController extends GetxController {
       var response = await teachersData.addTeachersData(data);
       print("===============================Controller $response");
 
-      // ✅ تحقق مباشرة من status قبل التعامل مع handlingData
       if (response['status'] == "failure") {
-        // فشل منطقي من السيرفر
         if (response['message'].toString().contains(
           "الاستاذ المحدد موجود بالفعل",
         )) {
@@ -86,7 +84,6 @@ class AddTeachersController extends GetxController {
         return;
       }
 
-      // ✅ الآن يمكن التعامل مع النجاح
       statusRequest = handlingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
@@ -149,9 +146,6 @@ class AddTeachersController extends GetxController {
   ///
   getSections(int gradeId) async {
     var response = await gradesData.viewSectionsData(gradeId);
-    print(
-      "=============================== Sections response $response",
-    ); // ✅ أضف print للتأكد
 
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
@@ -160,13 +154,10 @@ class AddTeachersController extends GetxController {
         List dataresponse = response['data'];
         sectionsList.addAll(dataresponse.map((e) => SectionsModel.fromJson(e)));
 
-        // تنظيف الـ section المختار سابقاً
         sectionNameController.clear();
         sectionIdController.clear();
 
-        print(
-          "Sections fetched: ${sectionsList.length}",
-        ); // ✅ تأكد من عدد الأقسام
+       
       }
     } else {
       statusRequest = StatusRequest.failure;
