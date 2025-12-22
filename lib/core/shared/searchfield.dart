@@ -6,7 +6,6 @@ class SearchField extends StatelessWidget {
   final Color? fillColor;
   final IconData? preicon;
   final Color? iconColor;
-  // final Function()? favpress;
   final void Function(String)? onChanged;
   final TextEditingController? mycontroller;
   final void Function()? onPressedsearch;
@@ -17,7 +16,6 @@ class SearchField extends StatelessWidget {
     this.fillColor,
     this.preicon,
     this.iconColor,
-    // required this.favpress,
     this.mycontroller,
     this.onChanged,
     this.onPressedsearch,
@@ -86,7 +84,6 @@ class SearchField extends StatelessWidget {
                 style: const TextStyle(color: AppColor.seconderyColor),
                 cursorColor: AppColor.primaryColor,
                 decoration: InputDecoration(
-                  //  counterStyle: TextStyle(color: AppColor.thirdColor),
                   filled: false,
                   fillColor: fillColor,
                   border: OutlineInputBorder(
