@@ -10,7 +10,6 @@ class SectionsController extends GetxController {
 
   @override
   void onInit() {
-    // جلب البيانات من الـ arguments
     sectionid = Get.arguments['sectionid'];
     sectionsModel = Get.arguments['sectionsmodel'];
     gradeid = Get.arguments['gradeid'];
